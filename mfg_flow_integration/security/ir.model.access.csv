@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_manufacture_or_purchase_wizard_user,access.manufacture.or.purchase.wizard.user,model_manufacture_or_purchase_wizard,mfg_flow_integration.group_store_department,1,1,1,1

@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+
+        <!-- Form View Inheritance -->
+        <record id="crm_lead_form_dreamwarez" model="ir.ui.view">
+            <field name="name">crm.lead.form.dreamwarez</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+
+                <!-- Add Engineering Team field -->
+                <!-- <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="engineering_team_id"/>
+                </xpath> -->
+
+                <!-- Header Buttons -->
+                <xpath expr="//header" position="inside">
+                    <button
+                        name="action_sale_quotations_new"
+                        string="New Quotation"
+                        type="object"
+                        class="btn-primary"
+                        groups="dw_crm.group_crm_sales_team"
+                        invisible="context.get('hide_new_quotation')"
+                    />
+                    <button
+                        name="action_send_quotation"
+                        string="Send Quotation"
+                        type="object"
+                        class="btn-secondary"
+                        groups="dw_crm.group_crm_sales_team"
+                        invisible="context.get('hide_send_quotation')"
+                    />
+                </xpath>
+
+                <!-- Make stage readonly -->
+                <xpath expr="//field[@name='stage_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

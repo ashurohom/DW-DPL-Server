@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_lead_admin,crm.lead.admin,crm.model_crm_lead,dw_crm.group_crm_admin,1,1,1,1
+access_crm_lead_sales_team,crm.lead sales team,model_crm_lead,dw_crm.group_crm_sales_team,1,1,1,1
+access_crm_lead_engineering_team,crm.lead engineering team,model_crm_lead,dw_crm.group_crm_engineering_team,1,1,1,1
+
+access_crm_stage_sales_team,crm.stage sales team,model_crm_stage,dw_crm.group_crm_sales_team,1,1,1,1
+access_crm_stage_engineering_team,crm.stage engineering team,model_crm_stage,dw_crm.group_crm_engineering_team,1,1,1,1
+
+access_crm_lead_time_user,crm.lead.time user,model_crm_lead_time,base.group_user,1,1,1,0
+access_crm_lead_time_manager,crm.lead.time manager,model_crm_lead_time,base.group_system,1,1,1,1
+
+
+
