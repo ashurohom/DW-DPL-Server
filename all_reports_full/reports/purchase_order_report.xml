@@ -56,37 +56,77 @@
                         <!-- MASTER TABLE -->
                         <table style="width:100%; border-collapse:collapse;">
 
-                            <!-- ================= MASTER ROW 1 ================= -->
                             <tr>
 
-                                <!-- LEFT : INVOICE TO -->
-                                <td class="cell" style="width:55%;">
-                                    <table style="width:100%; border-collapse:collapse;">
-                                        <tr>
-                                            <td style="width:18%;">
-                                                <img t-if="o.company_id.logo"
-                                                     t-att-src="image_data_uri(o.company_id.logo)"
-                                                     style="width:180px; height:auto;"/>
-                                            </td>
-                                            <td style="width:82%; padding-left:6px;">
-                                                Invoice To<br/>
-                                                <strong t-esc="o.company_id.name"/><br/>
-                                                <span t-esc="o.company_id.street"/><br/>
-                                                <span t-esc="o.company_id.city"/> -
-                                                <span t-esc="o.company_id.zip"/><br/>
-                                                GSTIN/UIN :
-                                                <span t-esc="o.company_id.vat"/><br/>
-                                                State Name :
-                                                <span t-esc="o.company_id.state_id.name"/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
+                                <!-- ================= LEFT SIDE (55%) ================= -->
+                                <td class="cell" style="width:55%; vertical-align:top; padding:0;">
 
-                                <!-- RIGHT : HEADER GRID -->
-                                <td class="cell" style="width:45%; padding:0;">
-                                    <table style="width:100%; border-collapse:collapse;">
+                                <table style="width:100%; border-collapse:collapse;">
 
+                                    <!-- INVOICE TO -->
+                                    <tr>
+                                        <td class="cell" style="border-left:none; border-right:none; border-top:none;">
+                                            <table style="width:100%; border-collapse:collapse;">
+                                                <tr>
+                                                    <td style="width:18%;">
+                                                        <img t-if="o.company_id.logo"
+                                                            t-att-src="image_data_uri(o.company_id.logo)"
+                                                            style="width:180px; height:auto;"/>
+                                                    </td>
+                                                    <td style="width:82%; padding-left:6px;">
+                                                        Invoice To<br/>
+                                                        <strong t-esc="o.company_id.name"/><br/>
+                                                        <span t-esc="o.company_id.street"/><br/>
+                                                        <span t-esc="o.company_id.city"/> -
+                                                        <span t-esc="o.company_id.zip"/><br/>
+                                                        GSTIN/UIN :
+                                                        <span t-esc="o.company_id.vat"/><br/>
+                                                        State Name :
+                                                        <span t-esc="o.company_id.state_id.name"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <!-- CONSIGNEE -->
+                                    <tr>
+                                        <td class="cell" style="border-left:none; border-right:none;">
+                                            Consignee (Ship to)<br/>
+                                            <strong t-esc="o.company_id.name"/><br/>
+                                            <span t-esc="o.company_id.street"/><br/>
+                                            <span t-esc="o.company_id.city"/> -
+                                            <span t-esc="o.company_id.zip"/><br/>
+                                            GSTIN/UIN :
+                                            <span t-esc="o.company_id.vat"/><br/>
+                                            State Name :
+                                            <span t-esc="o.company_id.state_id.name"/>
+                                        </td>
+                                    </tr>
+
+                                    <!-- SUPPLIER -->
+                                    <tr>
+                                        <td class="cell" style="border-left:none; border-right:none; border-bottom:none;">
+                                            Supplier (Bill from)<br/>
+                                            <strong t-esc="o.partner_id.name"/><br/>
+                                            <span t-esc="o.partner_id.street"/><br/>
+                                            GSTIN/UIN :
+                                            <span t-esc="o.partner_id.vat"/><br/>
+                                            State Name :
+                                            <span t-esc="o.partner_id.state_id.name"/>
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                            </td>
+
+
+                                <!-- ================= RIGHT SIDE (45%) ================= -->
+                                <td class="cell" style="width:45%; vertical-align:top; padding:0;">
+
+                                    <!-- HEADER GRID -->
+                                    <table style="width:100%; border-collapse:collapse;">
                                         <tr>
                                             <td class="cell">
                                                 Voucher No.<br/>
@@ -119,59 +159,28 @@
 
                                         <tr>
                                             <td class="item-cell center">
-                                                Dispatched through <br/>
+                                                Dispatched through<br/>
                                                 <div style="height:20px;"></div>
                                             </td>
                                             <td class="item-cell center">
-                                                Destination <br/>
+                                                Destination<br/>
                                                 <div style="height:20px;"></div>
                                             </td>
                                         </tr>
-
                                     </table>
-                                </td>
-                            </tr>
 
-                            <!-- ================= MASTER ROW 2 ================= -->
-                            <tr>
+                                    <!-- TERMS OF DELIVERY -->
+                                    <div class="cell" style="border-top:0.6px solid #777;">
+                                        Terms of Delivery<br/>
+                                        <strong>Door Delivery</strong>
+                                    </div>
 
-                                <!-- LEFT : CONSIGNEE -->
-                                <td class="cell">
-                                    Consignee (Ship to)<br/>
-                                    <strong t-esc="o.company_id.name"/><br/>
-                                                <span t-esc="o.company_id.street"/><br/>
-                                                <span t-esc="o.company_id.city"/> -
-                                                <span t-esc="o.company_id.zip"/><br/>
-                                                GSTIN/UIN :
-                                                <span t-esc="o.company_id.vat"/><br/>
-                                                State Name :
-                                                <span t-esc="o.company_id.state_id.name"/>
-                                </td>
-
-                                <!-- RIGHT : TERMS (ROWSPAN STARTS HERE) -->
-                                <td class="cell" rowspan="2">
-                                    Terms of Delivery<br/>
-                                    <strong>Door Delivery</strong>
-                                </td>
-                            </tr>
-
-                            <!-- ================= MASTER ROW 3 ================= -->
-                            <tr>
-
-                                <!-- LEFT : SUPPLIER -->
-                                <td class="cell">
-                                    Supplier (Bill from)<br/>
-                                    <strong t-esc="o.partner_id.name"/><br/>
-                                    <span t-esc="o.partner_id.street"/><br/>
-                                    GSTIN/UIN :
-                                    <span t-esc="o.partner_id.vat"/><br/>
-                                    State Name :
-                                    <span t-esc="o.partner_id.state_id.name"/>
                                 </td>
 
                             </tr>
 
                         </table>
+
 
                         <!-- ================= ITEMS TABLE ================= -->
                         <table style="width:100%; border-collapse:collapse; margin-top:0;">
