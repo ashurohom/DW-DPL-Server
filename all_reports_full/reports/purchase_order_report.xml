@@ -47,7 +47,7 @@
                     <!-- PAGE BORDER -->
                     <div style="
                         position:absolute;
-                        top:12mm; left:0; right:0; bottom:0;
+                        top:6mm; left:0; right:0; bottom:0;
                         border:0.7px solid #4c4b4b;
                         padding:6mm;
                         box-sizing:border-box;
@@ -60,13 +60,13 @@
                             <tr>
 
                                 <!-- LEFT : INVOICE TO -->
-                                <td class="cell" style="width:60%;">
+                                <td class="cell" style="width:55%;">
                                     <table style="width:100%; border-collapse:collapse;">
                                         <tr>
                                             <td style="width:18%;">
                                                 <img t-if="o.company_id.logo"
                                                      t-att-src="image_data_uri(o.company_id.logo)"
-                                                     style="width:190px; height:auto;"/>
+                                                     style="width:180px; height:auto;"/>
                                             </td>
                                             <td style="width:82%; padding-left:6px;">
                                                 Invoice To<br/>
@@ -84,7 +84,7 @@
                                 </td>
 
                                 <!-- RIGHT : HEADER GRID -->
-                                <td class="cell" style="width:40%; padding:0;">
+                                <td class="cell" style="width:45%; padding:0;">
                                     <table style="width:100%; border-collapse:collapse;">
 
                                         <tr>
