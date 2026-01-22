@@ -102,7 +102,8 @@
                                             <td class="cell"></td>
                                             <td class="cell">
                                                 Mode / Terms of Payment<br/>
-                                                <strong t-esc="o.payment_term_id.name"/>
+                                                <strong>Credit</strong>
+                                                <!-- <strong t-esc="o.payment_term_id.name"/> -->
                                             </td>
                                         </tr>
 
@@ -119,9 +120,11 @@
                                         <tr>
                                             <td class="item-cell center">
                                                 Dispatched through <br/>
+                                                <div style="height:20px;"></div>
                                             </td>
                                             <td class="item-cell center">
                                                 Destination <br/>
+                                                <div style="height:20px;"></div>
                                             </td>
                                         </tr>
 
