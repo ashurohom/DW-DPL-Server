@@ -13,6 +13,7 @@
                     border: 0.6px solid #777;
                     padding: 6px;
                     vertical-align: top;
+                    font-size: 16px;
                 }
 
                 .item-cell {
@@ -24,6 +25,9 @@
                 }
 
 
+                body {
+                        font-size: 16px;
+                    }
 
 
                 .center {
@@ -50,7 +54,7 @@
                     ">
 
                         <!-- MASTER TABLE -->
-                        <table style="width:100%; border-collapse:collapse; font-size:12px;">
+                        <table style="width:100%; border-collapse:collapse;">
 
                             <!-- ================= MASTER ROW 1 ================= -->
                             <tr>
@@ -165,7 +169,7 @@
                         </table>
 
                         <!-- ================= ITEMS TABLE ================= -->
-                        <table style="width:100%; border-collapse:collapse; font-size:12px; margin-top:0;">
+                        <table style="width:100%; border-collapse:collapse; margin-top:0;">
 
                             <!-- HEADER -->
                             <tr>
@@ -225,9 +229,8 @@
                                 </tr>
                             </t>
 
-                            <!-- EMPTY SPACE ROW (LIKE PDF) -->
                             <tr>
-                                <td class="cell" style="height:120px;"></td>
+                                <td class="cell" style="height:180px;"></td>
                                 <td class="cell"></td>
                                 <td class="cell"></td>
                                 <td class="cell"></td>
@@ -235,7 +238,6 @@
                                 <td class="cell"></td>
                                 <td class="cell"></td>
                             </tr>
-
 
 
                             <!-- TOTAL ROW -->
@@ -263,7 +265,7 @@
 
 
                         <!-- AMOUNT IN WORDS + E.&O.E + SIGNATURE (OUTER BORDER MATCHES SIGNATURE BOTTOM) -->
-                        <table style="width:100%; border-collapse:collapse; font-size:12px; margin-top:0;">
+                        <table style="width:100%; border-collapse:collapse; margin-top:0;">
 
                             <!-- ROW 1 -->
                             <tr>
@@ -343,16 +345,20 @@
 
                         </table>
 
-
-
-
-
-
-
-
-
                     </div>
+                 
                 </div>
+
+
+                <!-- FOOTER BELOW PAGE BORDER -->
+                <div style="
+                    text-align:center;
+                    color:#555;
+                    margin-top:-2mm;
+                ">
+                    This is a Computer Generated Document
+                </div>
+
 
             </t>
         </t>
