@@ -167,6 +167,15 @@
                                                 <div style="height:20px;"></div>
                                             </td>
                                         </tr>
+
+                                        <tr>
+                                            <td colspan="2" style="
+                                                border-bottom:0.6px solid #777;
+                                                padding:0;
+                                                height:0;
+                                            "></td>
+                                        </tr>
+
                                     </table>
 
                                     <!-- TERMS OF DELIVERY -->
