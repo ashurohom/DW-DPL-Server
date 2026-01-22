@@ -19,13 +19,16 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-from odoo import models, _
+from odoo import fields, models, _
 
 
 class AccountJournal(models.Model):
     """Module inherited for adding the reconcile method in the account
     journal"""
     _inherit = "account.journal"
+
+
+    display_alias_fields = fields.Boolean(string="Display Alias Fields")
 
     def action_open_reconcile(self):
         """Function to open reconciliation view for bank statements

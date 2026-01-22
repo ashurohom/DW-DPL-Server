@@ -9,6 +9,7 @@ class DwQualityCheck(models.Model):
     name = fields.Char(string='QC Reference', required=True, copy=False, default='New')
     picking_id = fields.Many2one('stock.picking', string='Picking', ondelete='cascade', index=True)
     product_id = fields.Many2one('product.product', string='Product')
+    mrp_id = fields.Many2one('mrp.production', string="Manufacturing Order")
     lot_id = fields.Many2one('stock.production.lot', string='Lot/Serial')  # No required=True    
     quantity = fields.Float(string='Quantity')
     passed = fields.Boolean(string='Passed')
@@ -20,17 +21,34 @@ class DwQualityCheck(models.Model):
         ('passed', 'Passed'),
         ('failed', 'Failed')
     ], string='QC Status', default='pending', tracking=True)
+    qc_status = fields.Selection([
+        ('received', 'Received for QC'),
+        ('done', 'QC Done')
+    ], string="QC Process Status", default='received', tracking=True)
+
+    def action_qc_done(self):
+        """Mark the QC as Done"""
+        for rec in self:
+            rec.qc_status = 'done'
+            rec.message_post(body=f"Quality Check marked as Done by {self.env.user.name}")
 
     @api.model
     def create(self, vals):
         if vals.get('name', 'New') == 'New':
             seq = self.env['ir.sequence'].sudo().next_by_code('dw.quality.check') or 'QC/0000'
             vals['name'] = seq
+
         rec = super().create(vals)
         rec._update_picking_qc_state()
+
         if rec.picking_id:
             rec.picking_id.message_post(body=f'Quality check {rec.name} created with status {rec.status}')
+
+        if rec.mrp_id:
+            rec.mrp_id.message_post(body=f'Quality check {rec.name} created for Manufacturing Order {rec.mrp_id.name}')
+
         return rec
+
 
     def write(self, vals):
         res = super().write(vals)

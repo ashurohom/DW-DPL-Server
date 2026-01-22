@@ -1,2 +1,2 @@
-from . import crm_lead_time
+from . import department_time_tracking
 from . import crm_inherit

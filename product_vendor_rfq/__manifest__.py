@@ -13,6 +13,8 @@
         'views/menus.xml',
         'views/purchase_order_view.xml',
         'views/comparision_view.xml',
+        # 'views/vendor_msme_list.xml',
+        # 'views/vendor_msme.xml',
     ],
     'installable': True,
     'application': False,

@@ -8,9 +8,12 @@
     "data": [
         "security/groups.xml",
         "security/ir.model.access.csv",
+        "data/ir_sequence.xml",
         "views/integration_wizard_view.xml",
         "reports/delivery_challan_report.xml",
         # "views/mrp_production.xml",
+        "views/production_request_view.xml",
+        "views/sale_order_view.xml",
         'Views/wizard.xml',
     ],
     "installable": True,

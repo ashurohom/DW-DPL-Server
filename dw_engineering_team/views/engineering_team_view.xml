@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Tree View -->
+
+    <!-- ================= TREE VIEW ================= -->
     <record id="view_engineering_team_tree" model="ir.ui.view">
         <field name="name">engineering.team.tree</field>
         <field name="model">engineering.team</field>
@@ -15,12 +16,17 @@
         </field>
     </record>
 
-    <!-- Form View -->
+    <!-- ================= FORM VIEW ================= -->
     <record id="view_engineering_team_form" model="ir.ui.view">
         <field name="name">engineering.team.form</field>
         <field name="model">engineering.team</field>
         <field name="arch" type="xml">
+
             <form string="Engineering Analysis">
+
+                <!-- REQUIRED FOR PRODUCT DOMAIN -->
+                <field name="company_id" invisible="1"/>
+
                 <header>
                     <button name="action_analysis_done"
                             type="object"
@@ -40,57 +46,81 @@
                     </group>
 
                     <notebook>
+
+                        <!-- ENGINEERING DETAILS -->
                         <page string="Engineering Details">
                             <group>
-                                <!-- <field name="cost_price"/> -->
-                                <!-- <field name="cost_price_mgnt" groups="dw_engineering_product.group_management_team"/> -->
                                 <field name="design_ref" filename="design_ref_filename"/>
                                 <field name="estimation_time"/>
                                 <field name="engineering_notes"/>
                             </group>
                         </page>
 
+                        <!-- PRODUCTS -->
                         <page string="Products">
-                            <!-- Remove group to use full width -->
                             <field name="product_line_ids" nolabel="1">
                                 <tree editable="bottom">
                                     <field name="product_id"/>
                                     <field name="quantity"/>
                                     <field name="cost_price"/>
-                                    <field name="cost_price_m" groups="dw_engineering_product.group_management_team"/>
+                                    <field name="cost_price_m"
+                                           groups="dw_engineering_product.group_management_team"/>
+                                    <field name="total_price" readonly="1"/>
                                 </tree>
                             </field>
                         </page>
 
+                        <!-- BILL OF MATERIALS -->
                         <page string="Bill of Materials">
-                            <!-- Remove group to use full width -->
-                            <field name="bom_ids" nolabel="1">
-                                <tree>
-                                    <field name="product_tmpl_id"/>
-                                    <field name="code"/>
-                                    <field name="product_qty"/>
-                                    <field name="type"/>
+
+                            <!-- BOM SELECTION -->
+                            <group>
+                                <field name="bom_ids"
+                                       widget="many2many_tags"
+                                       options="{'no_create': True}"/>
+                            </group>
+
+                            <!-- EXPLODED BOM (CLEAN VIEW) -->
+                            <field name="bom_exploded_line_ids" nolabel="1">
+                                <tree create="0" edit="0" delete="0">
+
+                                    <!-- TECHNICAL FIELD (HIDDEN) -->
+                                    <!-- <field name="engineering_product_line_id" invisible="1"/> -->
+
+                                    <!-- USER FRIENDLY PRODUCT NAME -->
+                                    <field name="main_product_display"
+                                           string="Engineering Product"/>
+
+                                    <field name="component_id" string="Component"/>
+                                    <field name="bom_qty" string="BoM Qty"/>
+                                    <field name="engineering_qty" string="Eng Qty"/>
+                                    <field name="total_required_qty" string="Total Required"/>
+                                    <field name="component_unit_price" string="Unit Price"/>
+                                    <field name="component_total_price" string="Total Price"/>
                                 </tree>
                             </field>
-                        </page>
-                    </notebook>
 
+                        </page>
+
+                    </notebook>
                 </sheet>
             </form>
+
         </field>
     </record>
 
-    <!-- Action -->
+    <!-- ================= ACTION ================= -->
     <record id="action_engineering_team" model="ir.actions.act_window">
         <field name="name">Engineering Analysis</field>
         <field name="res_model">engineering.team</field>
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Menus -->
+    <!-- ================= MENUS ================= -->
     <menuitem id="menu_engineering_root" name="Engineering" sequence="10"/>
     <menuitem id="menu_engineering_analysis"
               name="Analysis"
               parent="menu_engineering_root"
               action="action_engineering_team"/>
+
 </odoo>

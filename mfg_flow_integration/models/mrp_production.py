@@ -5,6 +5,7 @@ class MrpProduction(models.Model):
     _inherit = "mrp.production"
 
     material_checked = fields.Boolean(string="Material Checked", default=False)
+    
 
     def action_check_material(self):
         for mo in self:

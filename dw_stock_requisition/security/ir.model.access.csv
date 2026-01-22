@@ -8,4 +8,5 @@ access_dw_mrp_requisition_inventory_team,dw.mrp.requisition.inventory.team,model
 access_dw_mrp_requisition_line_user,dw.mrp.requisition.line.user,model_dw_mrp_requisition_line,base.group_user,1,1,1,0
 access_dw_mrp_requisition_line_inventory_team,dw.mrp.requisition.line.inventory.team,model_dw_mrp_requisition_line,dw_stock_requisition.group_inventory_team,1,1,1,1
 
-access_dw_mrp_requisition_manufacturing,dw.mrp.requisition.manufacturing,model_dw_mrp_requisition,dw_stock_requisition.group_manufacturing_team,1,1,1,0
+access_dw_mrp_requisition_manufacturing,dw.mrp.requisition.manufacturing,model_dw_mrp_requisition,dw_stock_requisition.group_manufacturing_team,1,1,1,1
+

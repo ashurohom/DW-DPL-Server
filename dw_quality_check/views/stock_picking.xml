@@ -18,14 +18,13 @@
             <field name="priority" eval="100"/>
             <field name="arch" type="xml">
                 <xpath expr="//header" position="inside">
-                    
-                    <button name="action_send_for_qc" type="object"
+                    <field name="show_qc_button" invisible="1"/>
+                    <button name="action_send_for_qc"
+                            type="object"
                             string="Send for Quality Check"
                             class="btn-primary"
-                            invisible="state != 'done'"/>
-
+                            invisible="not show_qc_button"/>
                 </xpath>
-
             </field>
         </record>
     </data>

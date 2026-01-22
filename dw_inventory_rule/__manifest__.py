@@ -17,7 +17,7 @@ Long description of module's purpose
 
     # always loaded
     'data': [
-        'security/ir.model.access.csv',
+        # 'security/ir.model.access.csv',
         # 'views/views.xml',
         'views/product_views.xml',
         # 'views/stock_views.xml',

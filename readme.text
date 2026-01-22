@@ -51,3 +51,29 @@ mgmt_team | management Team | to see cost price management field.
 sales_team | sales team | Crm access ( error)
 sales_admin | sales admin | all acess of crm + sales
 inventory  |INventory | for operating inventory group ; it is doing quality check too, 
+
+
+
+
+
+
+
+STORE GROUP :
+
+1. confim the quotation/ create MO and RFQ( PO).
+2. Only he can create the order, not confirm the PO. for confirming the PO. Purchase team is responsible.
+
+Purchase department: 
+
+1. all access of purchase with multi vendor RFQ workflow.
+
+
+Inventory:
+
+1. Acess to whole inventory module.
+2. all operation types, responsible for sending the products for quality Check.
+
+
+
+Manufacturing and Production team.
+

@@ -1,6 +1,6 @@
 {
     'name': 'DW Account Expense',
-    'version': '1.0',
+    'version': '17.0.1.1.0',
     'category': 'Accounting',
     'summary': 'Manage payments, credit/debit notes, and expenses with tags',
     'description': 'Extend account.move and account.payment with x_expense_tag, plus expense records.',

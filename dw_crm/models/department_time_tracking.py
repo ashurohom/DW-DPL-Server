@@ -20,25 +20,34 @@ class DepartmentTimeTracking(models.Model):
 
     start_time = fields.Datetime(string='Start Time', default=fields.Datetime.now)
     end_time = fields.Datetime(string='End Time')
-    duration = fields.Float(string='Duration (hours)', compute='_compute_duration', store=True)
+    total_duration = fields.Char(string='Total Duration', compute='_compute_total_duration', store=True)
+    lead_id = fields.Many2one('crm.lead', string="Lead")
+
 
     status = fields.Selection([
         ('in_progress', 'In Progress'),
         ('done', 'Done')
     ], string='Status', default='in_progress')
-
+    
     @api.depends('start_time', 'end_time')
-    def _compute_duration(self):
+    def _compute_total_duration(self):
         for rec in self:
-            start = rec.start_time
-            end = rec.end_time or fields.Datetime.now()  # handle ongoing stages
-            if start:
-                if isinstance(start, str):
-                    start = fields.Datetime.from_string(start)
-                if isinstance(end, str):
-                    end = fields.Datetime.from_string(end)
-                delta = end - start
-                rec.duration = delta.total_seconds() / 3600
+            if rec.start_time and rec.end_time:
+                delta = rec.end_time - rec.start_time
+                days = delta.days
+                hours = delta.seconds // 3600
+                minutes = (delta.seconds % 3600) // 60
+
+                # Format text cleanly depending on the duration
+                parts = []
+                if days:
+                    parts.append(f"{days} day{'s' if days > 1 else ''}")
+                if hours:
+                    parts.append(f"{hours} hour{'s' if hours > 1 else ''}")
+                if minutes:
+                    parts.append(f"{minutes} minute{'s' if minutes > 1 else ''}")
+
+                rec.total_duration = ", ".join(parts) if parts else "Less than a minute"
             else:
-                rec.duration = 0
+                rec.total_duration = "-"
 

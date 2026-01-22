@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//header/button[@name='action_open_label_type']" position="after">
-                <!-- <button name="action_create_requisition" string="Requisition" type="object" class="btn-primary" groups="mrp.group_mrp_user,dw_stock_requisition.group_inventory_team"/> -->
+                
                 <button name="action_create_requisition" string="Requisition" type="object" class="btn-primary" 
                     groups="dw_stock_requisition.group_manufacturing_team,dw_stock_requisition.group_inventory_team,dw_stock_requisition.group_manufacturing_requisition_admin"/>
             </xpath>

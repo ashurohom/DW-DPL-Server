@@ -71,45 +71,99 @@ class ResPartnerOnboarding(models.Model):
         # Notify managers for approval
         self._notify_managers()
     
+    # def action_approve(self):
+    #     """Approve the onboarding form"""
+    #     if not self.env.user.has_group('sales_team.group_sale_manager'):
+    #         raise UserError("Only Sales Managers can approve onboarding forms.")
+        
+    #     # Update partner with approved credit terms - CORRECTED FIELD NAME
+    #     self.partner_id.write({
+    #         'credit_limit': self.credit_limit,
+    #         'property_payment_term_id': self.payment_term_id.id,  # CORRECTED: property_payment_term_id
+    #     })
+        
+    #     self.write({
+    #         'state': 'approved',
+    #         'approved_by': self.env.user.id,
+    #         'approved_date': fields.Datetime.now(),
+    #     })
+        
+    #     # Activate the customer
+    #     self.action_activate()
+    
+    # def action_reject(self):
+    #     """Reject the onboarding form"""
+    #     if not self.env.user.has_group('sales_team.group_sale_manager'):
+    #         raise UserError("Only Sales Managers can reject onboarding forms.")
+        
+    #     # For now, just reject without wizard - you can enhance later
+    #     self.write({
+    #         'state': 'rejected',
+    #         'rejection_reason': 'Rejected by manager'
+    #     })
+    
     def action_approve(self):
         """Approve the onboarding form"""
-        if not self.env.user.has_group('sales_team.group_sale_manager'):
-            raise UserError("Only Sales Managers can approve onboarding forms.")
-        
-        # Update partner with approved credit terms - CORRECTED FIELD NAME
-        self.partner_id.write({
+        # Allow both Sales Managers and Customer Approvers
+        if not (
+            self.env.user.has_group('sales_team.group_sale_manager')
+            or self.env.user.has_group('dw_customer_credit.group_res_partner_onboarding_approver')
+        ):
+            raise UserError("Only Customer Approvers or Sales Managers can approve onboarding forms.")
+
+        # Write partner info with elevated rights (sudo)
+        self.partner_id.sudo().write({
             'credit_limit': self.credit_limit,
-            'property_payment_term_id': self.payment_term_id.id,  # CORRECTED: property_payment_term_id
+            'property_payment_term_id': self.payment_term_id.id,
         })
-        
+
+        # Update onboarding record
         self.write({
             'state': 'approved',
             'approved_by': self.env.user.id,
             'approved_date': fields.Datetime.now(),
         })
-        
+
         # Activate the customer
         self.action_activate()
-    
+
+
+
     def action_reject(self):
         """Reject the onboarding form"""
-        if not self.env.user.has_group('sales_team.group_sale_manager'):
-            raise UserError("Only Sales Managers can reject onboarding forms.")
+        # Allow both Sales Managers and Customer Approvers
+        if not (
+            self.env.user.has_group('sales_team.group_sale_manager')
+            or self.env.user.has_group('dw_customer_credit.group_res_partner_onboarding_approver')
+        ):
+            raise UserError("Only Customer Approvers.")
         
-        # For now, just reject without wizard - you can enhance later
         self.write({
             'state': 'rejected',
-            'rejection_reason': 'Rejected by manager'
+            'rejection_reason': 'Rejected by approver',
         })
-    
+
+
+
+
+    # def action_activate(self):
+    #     """Activate the customer after approval"""
+    #     self.partner_id.write({
+    #         'active': True,
+    #         'credit_limit': self.credit_limit,
+    #         'property_payment_term_id': self.payment_term_id.id,  # CORRECTED: property_payment_term_id
+    #     })
+    #     self.write({'state': 'active'})
+
     def action_activate(self):
         """Activate the customer after approval"""
-        self.partner_id.write({
+        self.partner_id.sudo().write({
             'active': True,
             'credit_limit': self.credit_limit,
-            'property_payment_term_id': self.payment_term_id.id,  # CORRECTED: property_payment_term_id
+            'property_payment_term_id': self.payment_term_id.id,
         })
         self.write({'state': 'active'})
+
     
     def action_draft(self):
         """Reset to draft"""

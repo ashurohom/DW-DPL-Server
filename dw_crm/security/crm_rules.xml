@@ -14,15 +14,9 @@
         <field name="name">Sales Team: Limited CRM Stages</field>
         <field name="model_id" ref="crm.model_crm_stage"/>
         <field name="groups" eval="[(4, ref('dw_crm.group_crm_sales_team'))]"/>
-        <field name="domain_force">[('name','in',['New','Analysis Done','Quotation Sent','Won'])]</field>
+        <field name="domain_force">[(1, '=', 1)]</field> 
+        <!-- <field name="domain_force">[('name','in',['New','Analysis Done','Quotation Sent','Won'])]</field> -->
     </record>
 
-    <!-- Engineering team: only allowed crm stages -->
-    <record id="rule_crm_stage_engineering" model="ir.rule">
-        <field name="name">CRM Stages - Engineering Team restriction</field>
-        <field name="model_id" ref="crm.model_crm_stage"/>
-        <field name="groups" eval="[(4, ref('dw_crm.group_crm_engineering_team'))]"/>
-        <field name="domain_force">[('name', 'in', ['Send for Analysis', 'Analysis Done'])]</field> 
-    </record>
 
 </odoo>

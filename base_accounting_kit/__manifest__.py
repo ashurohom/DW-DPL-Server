@@ -1,38 +1,7 @@
-# -*- coding: utf-8 -*-
-#############################################################################
-#
-#    Cybrosys Technologies Pvt. Ltd.
-#
-#    Copyright (C) 2023-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
-#    Author: Cybrosys Techno Solutions(<https://www.cybrosys.com>)
-#
-#    You can modify it under the terms of the GNU LESSER
-#    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU LESSER GENERAL PUBLIC LICENSE (LGPL v3) for more details.
-#
-#    You should have received a copy of the GNU LESSER GENERAL PUBLIC LICENSE
-#    (LGPL v3) along with this program.
-#    If not, see <http://www.gnu.org/licenses/>.
-#
-#############################################################################
 {
-    'name': 'Odoo 17 Full Accounting Kit for Community',
+    'name': 'Accounting Kit',
     'version': '17.0.1.1.6',
     'category': 'Accounting',
-    'summary': """Odoo 17 Accounting, Odoo 17 Accounting Reports, Odoo17 Accounting, Odoo Accounting, Odoo17 Financial Reports, Odoo17 Asset, Odoo17 Profit and Loss, PDC, Followups, Odoo17, Accounting, Odoo Apps, Reports""",
-    'description': """ Odoo 17 Accounting, The module used to manage the Full
-     Account Features that can manage the Account Reports,Journals Asset and 
-     Budget Management, Accounting Reports, PDC, Lock dates, Credit Limit, 
-     Follow Ups,  Day-Bank-Cash book report, odoo17, odoo17 accounting,
-      odoo accounting, v17 accounting,Odoo 17 Accounting, odoo apps""",
-    'author': 'Cybrosys Techno Solutions',
-    'company': 'Cybrosys Techno Solutions',
-    'maintainer': 'Cybrosys Techno Solutions',
-    'website': "https://www.cybrosys.com",
     'depends': ['account', 'sale', 'account_check_printing',
                 'base_account_budget', 'analytic'],
     'data': [

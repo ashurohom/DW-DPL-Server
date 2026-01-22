@@ -11,17 +11,15 @@
     'author': 'Dreamwarez',
     'website': 'https://dreamwarez.com',
     'license': 'LGPL-3',
-    'depends': ['base','crm','sale','sale_crm'], 
+    'depends': ['base','crm','sale','sale_crm','dw_engineering_team','dw_sales'], 
     'data': [
 
         'security/crm_groups.xml',
         'security/crm_rules.xml',
-        'security/ir.model.access.csv', 
-        
-                             
+        'security/ir.model.access.csv',         
+        'data/crm_stage_data.xml',                    
         'views/crm_inherit.xml',
-        'data/crm_stage_data.xml',
-        'views/crm_lead_time.xml',
+        'views/department_time_tracking.xml',
         'views/hide_filters.xml',
         
        ],
