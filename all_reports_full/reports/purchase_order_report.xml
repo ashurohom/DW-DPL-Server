@@ -7,7 +7,7 @@
             <style>
                 @page {
                     size: A4;
-                    margin: 5mm;
+                    margin: 2mm;
                 }
                 .cell {
                     border: 0.6px solid #777;
@@ -66,10 +66,10 @@
                                             <td style="width:18%;">
                                                 <img t-if="o.company_id.logo"
                                                      t-att-src="image_data_uri(o.company_id.logo)"
-                                                     style="max-height:60px;"/>
+                                                     style="width:190px; height:auto;"/>
                                             </td>
                                             <td style="width:82%; padding-left:6px;">
-                                                <strong>Invoice To</strong><br/>
+                                                Invoice To<br/>
                                                 <strong t-esc="o.company_id.name"/><br/>
                                                 <span t-esc="o.company_id.street"/><br/>
                                                 <span t-esc="o.company_id.city"/> -
@@ -134,13 +134,15 @@
 
                                 <!-- LEFT : CONSIGNEE -->
                                 <td class="cell">
-                                    <strong>Consignee (Ship to)</strong><br/>
-                                    <strong t-esc="o.dest_address_id.name"/><br/>
-                                    <span t-esc="o.dest_address_id.street"/><br/>
-                                    GSTIN/UIN :
-                                    <span t-esc="o.dest_address_id.vat"/><br/>
-                                    State Name :
-                                    <span t-esc="o.dest_address_id.state_id.name"/>
+                                    Consignee (Ship to)<br/>
+                                    <strong t-esc="o.company_id.name"/><br/>
+                                                <span t-esc="o.company_id.street"/><br/>
+                                                <span t-esc="o.company_id.city"/> -
+                                                <span t-esc="o.company_id.zip"/><br/>
+                                                GSTIN/UIN :
+                                                <span t-esc="o.company_id.vat"/><br/>
+                                                State Name :
+                                                <span t-esc="o.company_id.state_id.name"/>
                                 </td>
 
                                 <!-- RIGHT : TERMS (ROWSPAN STARTS HERE) -->
@@ -155,7 +157,7 @@
 
                                 <!-- LEFT : SUPPLIER -->
                                 <td class="cell">
-                                    <strong>Supplier (Bill from)</strong><br/>
+                                    Supplier (Bill from)<br/>
                                     <strong t-esc="o.partner_id.name"/><br/>
                                     <span t-esc="o.partner_id.street"/><br/>
                                     GSTIN/UIN :
