@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_purchase_order_form_inherit_custom_fields" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit.custom.fields</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Insert inside the same group as Payment Terms -->
+            <xpath expr="//field[@name='payment_term_id']/ancestor::group" position="inside">
+
+                <group string="Logistics Information" col="2">
+                    <!-- New custom fields -->
+                    <field name="other_references"/>
+                    <field name="dispatched_through"/>
+                    <field name="destination"/>
+                    <field name="terms_of_delivery"/>
+
+                </group>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

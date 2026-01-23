@@ -158,11 +158,11 @@
                                         </tr>
 
                                         <tr>
-                                            <td class="item-cell center">
+                                            <td class="item-cell">
                                                 Dispatched through<br/>
                                                 <div style="height:20px;"></div>
                                             </td>
-                                            <td class="item-cell center">
+                                            <td class="item-cell">
                                                 Destination<br/>
                                                 <div style="height:20px;"></div>
                                             </td>

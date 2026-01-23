@@ -20,3 +20,4 @@ from . import general_ledger
 from . import trail_balance
 from . import valuation_report
 from . import journal_register_report
+from . import purchase_order

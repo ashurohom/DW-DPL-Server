@@ -31,7 +31,9 @@
         'views/valuation_report.xml',
         'views/journal_register_report.xml',
         # 'views/report_layout.xml',
+        'views/purchase_order_view.xml',
         'reports/purchase_order_report.xml',
+        
     ],
     'installable': True,
     'application': True,
