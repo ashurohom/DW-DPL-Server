@@ -194,6 +194,46 @@
 
                         </table>
 
+                        <!-- CALCULATE TAX AMOUNTS -->
+
+                        <!-- GST CALCULATION (PURCHASE ORDER - CORRECT WAY) -->
+                        <t t-set="cgst_amount" t-value="0.0"/>
+                        <t t-set="sgst_amount" t-value="0.0"/>
+                        <t t-set="igst_amount" t-value="0.0"/>
+
+                        <t t-foreach="o.order_line" t-as="line">
+                            <t t-set="taxes"
+                            t-value="line.taxes_id.compute_all(
+                                            line.price_unit,
+                                            o.currency_id,
+                                            line.product_qty,
+                                            product=line.product_id,
+                                            partner=o.partner_id
+                                        )"/>
+
+                            <t t-foreach="taxes['taxes']" t-as="tax">
+                                <t t-set="tax_name" t-value="(tax.get('name') or '').upper()"/>
+
+                                <!-- CGST -->
+                                <t t-if="'CGST' in tax_name">
+                                    <t t-set="cgst_amount" t-value="cgst_amount + tax.get('amount', 0.0)"/>
+                                </t>
+
+                                <!-- SGST -->
+                                <t t-if="'SGST' in tax_name">
+                                    <t t-set="sgst_amount" t-value="sgst_amount + tax.get('amount', 0.0)"/>
+                                </t>
+
+                                <!-- IGST -->
+                                <t t-if="'IGST' in tax_name">
+                                    <t t-set="igst_amount" t-value="igst_amount + tax.get('amount', 0.0)"/>
+                                </t>
+                            </t>
+                        </t>
+
+
+
+
 
                         <!-- ================= ITEMS TABLE ================= -->
                         <table style="width:100%; border-collapse:collapse; margin-top:0;">
@@ -266,6 +306,54 @@
                                 <td class="cell"></td>
                             </tr>
 
+                            <tr>
+                                <td class="cell"></td>
+                                <td class="cell" style="text-align:right;"><strong>CGST Input</strong></td>
+                                <td class="cell"></td>
+                                <td class="cell"></td>
+                                <td class="cell"></td>
+                                <td class="cell"></td>
+                                <td class="cell" style="text-align:right;">
+                                    <t t-esc="'%.2f' % cgst_amount"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td class="cell"></td>
+                                <td class="cell" style="text-align:right;"><strong>SGST Input</strong></td>
+                                <td class="cell"></td>
+                                <td class="cell"></td>
+                                <td class="cell"></td>
+                                <td class="cell"></td>
+                                <td class="cell" style="text-align:right;">
+                                    <t t-esc="'%.2f' % sgst_amount"/>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                            <td class="cell"></td>
+
+                            <td class="cell" style="text-align:right;">
+                                <strong>Round Off</strong>
+                            </td>
+
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+
+                            <td class="cell" style="text-align:right;">
+                                <strong>
+                                    <t t-esc="'%.2f' % (cgst_amount + sgst_amount)"/>
+                                </strong>
+                            </td>
+                        </tr>
+
+
+
+
 
                             <!-- TOTAL ROW -->
                             <tr>
@@ -281,9 +369,8 @@
                                 <td class="cell"></td>
                                 <td class="cell" style="text-align:right;">
                                     <strong>
-                                        ₹ <t t-esc="o.amount_total"/>
-                                    </strong><br/>
-                                    <!-- <span style="font-style:italic;">E. &amp; O.E</span> -->
+                                        $ <t t-esc="'%.2f' % (o.amount_untaxed + cgst_amount + sgst_amount + igst_amount)"/>
+                                    </strong>
                                 </td>
                             </tr>
 
@@ -333,7 +420,7 @@
                                     padding:6px;
                                 ">
                                     <strong>
-                                        INR <t t-esc="o.currency_id.amount_to_text(o.amount_total)"/> Only
+                                        <t t-esc="o.currency_id.amount_to_text(o.amount_total)"/>
                                     </strong>
                                 </td>
 
@@ -344,7 +431,7 @@
                                     border-bottom:none;
                                 "></td>
                             </tr>
-
+                            
                             <!-- ROW 3 : SIGNATURE (PROVIDES FINAL BOTTOM BORDER) -->
                             <tr>
                                 <td style="
@@ -381,7 +468,7 @@
                 <div style="
                     text-align:center;
                     color:#555;
-                    margin-top:-2mm;
+                     
                 ">
                     This is a Computer Generated Document
                 </div>
