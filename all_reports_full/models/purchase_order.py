@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class PurchaseOrder(models.Model):
@@ -8,6 +8,36 @@ class PurchaseOrder(models.Model):
     dispatched_through = fields.Char(string="Dispatched through")
     destination = fields.Char(string="Destination")
     terms_of_delivery = fields.Char(string="Terms of Delivery")
+
+    ship_to_address = fields.Text(
+        string="Ship To",
+        help="Consignee / Ship To Address"
+    )
+
+    ship_to_name = fields.Char(string="Ship To Name")
+    ship_to_street = fields.Char(string="Address Line 1")
+    ship_to_street2 = fields.Char(string="Address Line 2")
+    ship_to_city = fields.Char(string="City")
+    ship_to_state_id = fields.Many2one('res.country.state', string="State")
+    ship_to_zip = fields.Char(string="ZIP")
+    ship_to_gstin = fields.Char(string="GSTIN/UIN")
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
+        company = self.env.company
+
+        res.setdefault('ship_to_name', company.name)
+        res.setdefault('ship_to_street', company.street)
+        res.setdefault('ship_to_street2', company.street2)
+        res.setdefault('ship_to_city', company.city)
+        res.setdefault('ship_to_state_id', company.state_id.id if company.state_id else False)
+        res.setdefault('ship_to_zip', company.zip)
+        res.setdefault('ship_to_gstin', company.vat)
+
+        return res
+    
+
 
     commercial_terms = fields.Html(
         string="Commercial Terms & Conditions",
