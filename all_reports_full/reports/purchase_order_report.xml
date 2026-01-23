@@ -140,11 +140,11 @@
 
                                         <tr>
                                             <td class="cell"></td>
-                                            <td class="cell">
+                                           <td class="cell">
                                                 Mode / Terms of Payment<br/>
-                                                <strong>Credit</strong>
-                                                <!-- <strong t-esc="o.payment_term_id.name"/> -->
+                                                <strong t-if="o.payment_term_id" t-esc="o.payment_term_id.name"/>
                                             </td>
+
                                         </tr>
 
                                         <tr>
@@ -153,20 +153,23 @@
                                                 <strong t-esc="o.name"/>
                                             </td>
                                             <td class="cell">
-                                                Other References
+                                                Other References<br/>
+                                                <strong t-if="o.other_references" t-esc="o.other_references"/>
                                             </td>
+
                                         </tr>
 
                                         <tr>
                                             <td class="item-cell">
                                                 Dispatched through<br/>
-                                                <div style="height:20px;"></div>
+                                                <strong t-if="o.dispatched_through" t-esc="o.dispatched_through"/>
                                             </td>
                                             <td class="item-cell">
                                                 Destination<br/>
-                                                <div style="height:20px;"></div>
+                                                <strong t-if="o.destination" t-esc="o.destination"/>
                                             </td>
                                         </tr>
+
 
                                         <tr>
                                             <td colspan="2" style="
@@ -181,8 +184,9 @@
                                     <!-- TERMS OF DELIVERY -->
                                     <div class="cell" style="border-top:0.6px solid #777;">
                                         Terms of Delivery<br/>
-                                        <strong>Door Delivery</strong>
+                                        <strong t-if="o.terms_of_delivery" t-esc="o.terms_of_delivery"/>
                                     </div>
+
 
                                 </td>
 
