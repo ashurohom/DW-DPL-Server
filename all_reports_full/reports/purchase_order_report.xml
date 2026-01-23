@@ -474,20 +474,36 @@
 
 
                         </table>
+                        <!-- COMPUTER GENERATED NOTE (CENTERED) -->
+                        <tr>
+                            <td colspan="2" style="
+                                border-left:0.6px solid #777;
+                                border-right:0.6px solid #777;
+                                border-top:none;
+                                border-bottom:0.6px solid #777;
+                                padding:8px;
+                            ">
+                                <div style="
+                                    width:100%;
+                                    text-align:center;
+                                    font-size:13px;
+                                    color:#555;
+                                ">
+                                    This is a Computer Generated Document
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+
 
                     </div>
                  
                 </div>
 
 
-                <!-- FOOTER BELOW PAGE BORDER -->
-                <div style="
-                    text-align:center;
-                    color:#555;
-                     
-                ">
-                    This is a Computer Generated Document
-                </div>
+              
 
 
             </t>

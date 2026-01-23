@@ -14,7 +14,7 @@ class PurchaseOrder(models.Model):
         help="Consignee / Ship To Address"
     )
 
-    ship_to_name = fields.Char(string="Ship To Name")
+    ship_to_name = fields.Char(string="Consignee (Ship to)")
     ship_to_street = fields.Char(string="Address Line 1")
     ship_to_street2 = fields.Char(string="Address Line 2")
     ship_to_city = fields.Char(string="City")
