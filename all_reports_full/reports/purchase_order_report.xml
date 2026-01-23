@@ -475,6 +475,30 @@
 
 
             </t>
+
+
+            <!-- ================= ANNEX-1 PAGE ================= -->
+            <div style="page-break-before: always; font-size:13px;">
+
+                <!-- <div style="text-align:center; font-weight:bold; font-size:16px; margin-bottom:20px;">
+                    Annex-1<br/>
+                    COMMERCIAL TERMS AND CONDITIONS
+                </div> -->
+
+                <div style="border:0.6px solid #777; padding:12px; min-height:250mm;">
+                    <t t-if="o.commercial_terms">
+                        <t t-raw="o.commercial_terms"/>
+                    </t>
+                    <t t-else="">
+                        <p>No Commercial Terms &amp; Conditions defined.</p>
+                    </t>
+                </div>
+
+            </div>
+
+
+
+
         </t>
     </template>
 

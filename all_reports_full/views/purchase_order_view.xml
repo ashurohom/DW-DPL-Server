@@ -24,4 +24,28 @@
         </field>
     </record>
 
+
+    <record id="view_purchase_order_form_annex1" model="ir.ui.view">
+        <field name="name">purchase.order.form.annex1</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Commercial Terms &amp; Conditions">
+                    <group>
+                        <field name="commercial_terms"
+                               widget="html"
+                               placeholder="Type Commercial Terms &amp; Conditions here..."
+                               readonly="state == 'done'"/>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+
+
+
 </odoo>
