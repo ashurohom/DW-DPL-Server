@@ -12,7 +12,7 @@
 
                 /* MAIN PAGE BORDER */
                 .quotation-page {
-                    border: 2px solid #000;
+                    border: 1px solid #262424;
                     padding: 10px;
                     box-sizing: border-box;
                     font-size: 14px;
@@ -23,8 +23,13 @@
                     border-collapse: collapse;
                 }
 
+                table:first-child {
+                    border-top: none;
+                }
+
+
                 td, th {
-                    border: 1px solid #000;
+                    border: 1px solid #262424;
                     padding: 6px;
                     vertical-align: middle;
                 }
@@ -38,6 +43,7 @@
                     font-weight: bold;
                     color: #5b7bd5;
                     text-align: right;
+                    margin-bottom: 3px;
                 }
 
                 .section-title {
@@ -45,7 +51,14 @@
                     font-weight: bold;
                     text-align: center;
                     font-size: 20px;
+                    border-top: none !important;
                 }
+
+                .no-top-border {
+                    border-top: none !important;
+                }
+
+
 
                 .table-header {
                     background: #cfe2f3;
@@ -60,6 +73,19 @@
                 .center {
                     text-align: center;
                 }
+
+                .no-page-break {
+                    page-break-inside: avoid;
+                    break-inside: avoid;
+                    page-break-before: avoid;
+                }
+
+                .header-box {
+                    border: 1px solid #262424;   
+                    border-top: 1px solid #262424;
+                }
+
+
             </style>
 
             <t t-foreach="docs" t-as="o">
@@ -67,12 +93,13 @@
                 <div class="page quotation-page">
 
                     <!-- HEADER -->
-                    <table>
+                    
+                    <table class="header-box">
                         <tr class="no-border">
                             <td class="no-border" style="width:40%;">
                                 <img t-if="o.company_id.logo"
-                                     t-att-src="image_data_uri(o.company_id.logo)"
-                                     style="width:160px;"/>
+                                    t-att-src="image_data_uri(o.company_id.logo)"
+                                    style="width:160px;"/>
                             </td>
                             <td class="no-border" style="width:60%;">
                                 <div class="header-title">
@@ -87,20 +114,29 @@
                         </tr>
                     </table>
 
+
                     <!-- QUOTATION TITLE -->
                     <table>
                         <tr>
-                            <td class="section-title">Quotation</td>
+                            <td class="section-title no-top-border">Quotation</td>
                         </tr>
                     </table>
 
+
                     <!-- CUSTOMER + QUOTATION INFO -->
-                    <!-- <table>
+                    <table>
                         <tr>
+                            <!-- LEFT BLOCK -->
                             <td style="width:20%;"><b>Customer Name:-</b></td>
-                            <td style="width:40%;"><t t-esc="o.partner_id.name"/></td>
-                            <td style="width:20%;" class="center"><b>Date:</b></td>
-                            <td style="width:20%;" class="center">
+                            <td style="width:40%;">
+                                <t t-esc="o.partner_id.name"/>
+                            </td>
+
+                            <!-- RIGHT BLOCK (DATE) -->
+                            <td style="width:20%;" rowspan="2" class="center">
+                                <b>Date:</b>
+                            </td>
+                            <td style="width:20%;" rowspan="2" class="center">
                                 <t t-esc="o.date_order.strftime('%d-%m-%Y')"/>
                             </td>
                         </tr>
@@ -110,19 +146,22 @@
                             <td>
                                 <t t-esc="o.partner_id.contact_address"/>
                             </td>
-                            <td class="center"><b>Quotation Ref No:</b></td>
-                            <td class="center">
-                                <t t-esc="o.name"/>
-                            </td>
                         </tr>
 
                         <tr>
+                            <!-- LEFT BLOCK -->
                             <td><b>Contact Person:-</b></td>
                             <td>
                                 <t t-esc="o.partner_id.name"/>
                             </td>
-                            <td class="center"><b>Revision No:-</b></td>
-                            <td class="center">Rev 00</td>
+
+                            <!-- RIGHT BLOCK (QUOTATION REF) -->
+                            <td rowspan="2" class="center">
+                                <b>Quotation Ref No:</b>
+                            </td>
+                            <td rowspan="2" class="center">
+                                <t t-esc="o.name"/>
+                            </td>
                         </tr>
 
                         <tr>
@@ -130,29 +169,44 @@
                             <td>
                                 <t t-esc="o.partner_id.phone or ''"/>
                             </td>
-                            <td class="center"><b>Email:</b></td>
-                            <td class="center">
+                        </tr>
+
+                        <tr>
+                            <!-- LEFT BLOCK -->
+                            <td><b>E-mail Address:-</b></td>
+                            <td>
                                 <t t-esc="o.partner_id.email or ''"/>
                             </td>
-                        </tr>
-                    </table> -->
 
-                    <!-- PRODUCT TABLE -->
-                    <!-- <table>
+                            <!-- RIGHT BLOCK (REVISION) -->
+                            <td class="center">
+                                <b>Revision no-</b>
+                            </td>
+                            <td class="center">
+                                DPL/DEL/03 Rev 00
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <!-- PRODUCT + TERMS TABLE (SINGLE FLOW – NO FORCED PAGE BREAK) -->
+                    <table>
+
+                        <!-- PRODUCT HEADER -->
                         <tr class="table-header">
-                            <td style="width:5%;">S.No</td>
-                            <td style="width:10%;">MOQ</td>
-                            <td style="width:45%;">Description</td>
-                            <td style="width:10%;">UOM</td>
-                            <td style="width:10%;">Qty</td>
-                            <td style="width:20%;">Price / Nos</td>
+                            <td class="no-top-border" style="width:5%;">S.No</td>
+                            <td class="no-top-border" style="width:10%;">MOQ</td>
+                            <td class="no-top-border" style="width:45%;">Description</td>
+                            <td class="no-top-border" style="width:10%;">UOM</td>
+                            <td class="no-top-border" style="width:10%;">Qty</td>
+                            <td class="no-top-border" style="width:20%;">Price / Nos</td>
                         </tr>
 
                         <t t-set="i" t-value="1"/>
                         <t t-foreach="o.order_line" t-as="line">
                             <tr>
                                 <td class="center"><t t-esc="i"/></td>
-                                <td class="center">-</td>
+                                <td class="center"><t t-esc="line.product_uom_qty"/></td>
                                 <td><t t-esc="line.name"/></td>
                                 <td class="center"><t t-esc="line.product_uom.name"/></td>
                                 <td class="center"><t t-esc="line.product_uom_qty"/></td>
@@ -162,59 +216,67 @@
                             </tr>
                             <t t-set="i" t-value="i + 1"/>
                         </t>
-                    </table> -->
 
-                    
-                    <!-- TERMS & CONDITIONS -->
-                    <!-- <table>
+                        <!-- TERMS TITLE (IMMEDIATELY AFTER PRODUCTS) -->
                         <tr>
-                            <td class="section-title">Terms &amp; Conditions:</td>
-                        </tr>
-                        <tr>
-                            <td style="font-size:14px; line-height:1.6;">
-
-                                <b>Price:</b> The quoted price is exclusive of GST.<br/><br/>
-
-                                <b>Transportation:</b> Freight will be charged Extra at the Actual if the truck freight cost is not matched due to less qty.<br/><br/>
-
-                                <b>MOQ:</b> Rates are valid only if order received as per the MOQ.<br/><br/>
-
-                                <b>Inventory:</b> Stock will be maintained based on the schedule given – 15 to 20% extra – if there is any change in plan or specification or short closure of the order, you need to bear the full cost of material kept in Inventory – In the case of SFG / FG parts.<br/><br/>
-
-                                For the plain boards, it can be mutually discussed and resolved depending on the usability of the boards.<br/><br/>
-
-                                <b>GST:</b> Extra as applicable depending on the product.<br/><br/>
-
-                                <b>HSN Code:</b><br/>
-                                Corrugated box/board only – 48191010<br/>
-                                Corrugated box with pallet – 48191010<br/>
-                                Wood / Plywood box/pallet – 44151000<br/><br/>
-
-                                <b>Lead Time:</b> First set 10 to 15 days - 3 months tentative schedule to be shared by you, 2nd set onwards based on the Schedule shared by you.<br/><br/>
-
-                                <b>Additional Process / Treatment cost:</b> Extra as applicable – will be processed and chargeable as mutually agreed upon.<br/><br/>
-
-                                <b>Quotation Validity:</b> 7 days.<br/><br/>
-
-                                <b>Payment Terms:</b> Advance or 30 days credit period from date of Invoice.<br/><br/>
-
-                                <b>General Note:</b><br/>
-                                1. As per ISPM-15 standard, Duisport does not guarantee for mold and fungus formation due to increase in moisture levels in wood/Plywood (Naturally due to atmospheric conditions / due to water splash or getting wet in water through any kind of source).<br/>
-                                2. As per ISPM-15 standard, plywood and corrugated boards are exempted from fumigation / heat treatment.<br/>
-                                3. If market rates fluctuate, then we have to revise the rates accordingly on mutual concern.<br/>
-                                4. If there is any additional process or design change made, prices will be revised accordingly.<br/>
-                                5. The outsourced items supplied or referred by us are as per the standards shared by the suppliers’ terms and conditions. Any discrepancy arising from this will have to be referred and taken up with the concerned suppliers as per their terms and conditions.<br/>
-                                6. In-house inspection reports will be shared for every batch. If material test certificate is required from a 3rd party Lab, the cost for the same will be charged @ actual + material cost + freight + taxes.<br/><br/>
-
-                                <b>For Duisport Packing Logistics India Pvt. Ltd.</b><br/><br/>
-
-                                <b>Khushbu Baiswar</b><br/>
-                                Customer Support<br/>
-                                Mobile No.: +91 7408247865
-
+                            <td colspan="6" class="section-title">
+                                Terms &amp; Conditions:
                             </td>
                         </tr>
-                    </table> -->
+
+                        <!-- TERMS CONTENT -->
+                        <tr>
+                            <td colspan="6" style="border-top:none; padding:10px;">
+                                <div style="font-size:14px; line-height:1.6;">
+
+                                    <strong>Price:</strong><span style="font-weight: normal;">
+                                        The quoted price is exclusive of GST.
+                                    </span><br/><br/>
+
+
+                                    <b>Transportation:</b> Freight will be charged Extra at the Actual if the truck freight cost is not matched due to less qty.<br/><br/>
+
+                                    <b>MOQ:</b> Rates are valid only if order received as per the MOQ.<br/><br/>
+
+                                    <b>Inventory:</b> Stock will be maintained based on the schedule given – 15 to 20% extra – if there is any change in plan or specification or short closure of the order, you need to bear the full cost of material kept in Inventory – In the case of SFG / FG parts.<br/><br/>
+
+                                    For the plain boards, it can be mutually discussed and resolved depending on the usability of the boards.<br/><br/>
+
+                                    <b>GST:</b> Extra as applicable depending on the product.<br/><br/>
+
+                                    <b>HSN Code:</b><br/>
+                                    Corrugated box/board only – 48191010<br/>
+                                    Corrugated box with pallet – 48191010<br/>
+                                    Wood / Plywood box/pallet – 44151000<br/><br/>
+
+                                    <b>Lead Time:</b> First set 10 to 15 days - 3 months tentative schedule to be shared by you, 2nd set onwards based on the Schedule shared by you.<br/><br/>
+
+                                    <b>Additional Process / Treatment cost:</b> Extra as applicable – will be processed and chargeable as mutually agreed upon.<br/><br/>
+
+                                    <b>Quotation Validity:</b> 7 days.<br/><br/>
+
+                                    <b>Payment Terms:</b> Advance or 30 days credit period from date of Invoice.<br/><br/>
+
+                                    <b>General Note:</b><br/>
+                                    1. As per ISPM-15 standard, Duisport does not guarantee for mold and fungus formation due to increase in moisture levels in wood/Plywood.<br/>
+                                    2. As per ISPM-15 standard, plywood and corrugated boards are exempted from fumigation / heat treatment.<br/>
+                                    3. If market rates fluctuate, then rates may be revised on mutual concern.<br/>
+                                    4. Any design or process change will revise prices accordingly.<br/>
+                                    5. Outsourced items are governed by supplier terms.<br/>
+                                    6. Third-party testing costs will be charged at actuals.<br/><br/>
+
+                                    <b>For Duisport Packing Logistics India Pvt. Ltd.</b><br/><br/>
+                                    <b>Khushbu Baiswar</b><br/>
+                                    Customer Support<br/>
+                                    Mobile No.: +91 7408247865
+
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+
+
 
 
                 </div>

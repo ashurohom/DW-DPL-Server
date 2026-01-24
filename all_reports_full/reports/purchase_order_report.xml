@@ -212,7 +212,7 @@
 
                         <!-- CALCULATE TAX AMOUNTS -->
 
-                        <!-- GST CALCULATION (PURCHASE ORDER - CORRECT WAY) -->
+                        <!-- GST CALCULATION (PURCHASE ORDER) -->
                         <t t-set="cgst_amount" t-value="0.0"/>
                         <t t-set="sgst_amount" t-value="0.0"/>
                         <t t-set="igst_amount" t-value="0.0"/>
@@ -316,7 +316,7 @@
                             <tr>
                                 <td class="cell"></td>
                                 <td class="cell" style="text-align:right;">
-                                    <strong>Total</strong>
+                                    <strong>Total Amount</strong>
                                 </td>
                                 <td class="cell"></td>
                                 <td class="cell"></td>
@@ -324,7 +324,7 @@
                                 <td class="cell"></td>
                                 <td class="cell" style="text-align:right;">
                                     <strong>
-                                        <t t-esc="'%.2f' % o.amount_untaxed"/>
+                                       $ <t t-esc="'%.2f' % o.amount_untaxed"/>
                                     </strong>
                                 </td>
                             </tr>
@@ -392,7 +392,7 @@
                             <!-- TOTAL ROW -->
                             <tr>
                                 <td class="cell"></td>
-                                <td class="cell" style="text-align:right;"><strong>Total</strong></td>
+                                <td class="cell" style="text-align:right;"><strong>Total Taxable Amount</strong></td>
                                 <td class="cell"></td>
                                 <td class="cell" style="text-align:right;">
                                     <strong>
