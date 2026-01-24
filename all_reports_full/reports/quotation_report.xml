@@ -217,7 +217,7 @@
                             <t t-set="i" t-value="i + 1"/>
                         </t>
 
-                        <!-- TERMS TITLE (IMMEDIATELY AFTER PRODUCTS) -->
+                        <!-- TERMS TITLE -->
                         <tr>
                             <td colspan="6" class="section-title">
                                 Terms &amp; Conditions:
@@ -227,50 +227,12 @@
                         <!-- TERMS CONTENT -->
                         <tr>
                             <td colspan="6" style="border-top:none; padding:10px;">
-                                <div style="font-size:14px; line-height:1.6;">
-
-                                    <strong>Price:</strong><span style="font-weight: normal;">
-                                        The quoted price is exclusive of GST.
-                                    </span><br/><br/>
-
-
-                                    <b>Transportation:</b> Freight will be charged Extra at the Actual if the truck freight cost is not matched due to less qty.<br/><br/>
-
-                                    <b>MOQ:</b> Rates are valid only if order received as per the MOQ.<br/><br/>
-
-                                    <b>Inventory:</b> Stock will be maintained based on the schedule given – 15 to 20% extra – if there is any change in plan or specification or short closure of the order, you need to bear the full cost of material kept in Inventory – In the case of SFG / FG parts.<br/><br/>
-
-                                    For the plain boards, it can be mutually discussed and resolved depending on the usability of the boards.<br/><br/>
-
-                                    <b>GST:</b> Extra as applicable depending on the product.<br/><br/>
-
-                                    <b>HSN Code:</b><br/>
-                                    Corrugated box/board only – 48191010<br/>
-                                    Corrugated box with pallet – 48191010<br/>
-                                    Wood / Plywood box/pallet – 44151000<br/><br/>
-
-                                    <b>Lead Time:</b> First set 10 to 15 days - 3 months tentative schedule to be shared by you, 2nd set onwards based on the Schedule shared by you.<br/><br/>
-
-                                    <b>Additional Process / Treatment cost:</b> Extra as applicable – will be processed and chargeable as mutually agreed upon.<br/><br/>
-
-                                    <b>Quotation Validity:</b> 7 days.<br/><br/>
-
-                                    <b>Payment Terms:</b> Advance or 30 days credit period from date of Invoice.<br/><br/>
-
-                                    <b>General Note:</b><br/>
-                                    1. As per ISPM-15 standard, Duisport does not guarantee for mold and fungus formation due to increase in moisture levels in wood/Plywood.<br/>
-                                    2. As per ISPM-15 standard, plywood and corrugated boards are exempted from fumigation / heat treatment.<br/>
-                                    3. If market rates fluctuate, then rates may be revised on mutual concern.<br/>
-                                    4. Any design or process change will revise prices accordingly.<br/>
-                                    5. Outsourced items are governed by supplier terms.<br/>
-                                    6. Third-party testing costs will be charged at actuals.<br/><br/>
-
-                                    <b>For Duisport Packing Logistics India Pvt. Ltd.</b><br/><br/>
-                                    <b>Khushbu Baiswar</b><br/>
-                                    Customer Support<br/>
-                                    Mobile No.: +91 7408247865
-
-                                </div>
+                                <t t-if="o.quotation_terms">
+                                    <t t-raw="o.quotation_terms"/>
+                                </t>
+                                <t t-else="">
+                                    <i>No Terms &amp; Conditions defined.</i>
+                                </t>
                             </td>
                         </tr>
 

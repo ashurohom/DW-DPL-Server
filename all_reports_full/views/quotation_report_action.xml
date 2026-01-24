@@ -18,4 +18,26 @@
         <field name="print_report_name">'Quotation - %s' % (object.name)</field>
     </record>
 
+
+    <record id="view_sale_order_form_terms_conditions" model="ir.ui.view">
+        <field name="name">sale.order.form.quotation.terms</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Terms &amp; Conditions">
+                    <group>
+                        <field name="quotation_terms"
+                               widget="html"
+                               placeholder="Type Terms &amp; Conditions here..."
+                               readonly="state in ('sale','done')"/>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+    
+
 </odoo>
