@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="quotation_report_document">
+        <t t-call="web.basic_layout">
+
+            <style>
+                /* REMOVE DEFAULT ODOO PAGE BORDER */
+                .page {
+                    border: none !important;
+                }
+
+                /* MAIN PAGE BORDER */
+                .quotation-page {
+                    border: 2px solid #000;
+                    padding: 10px;
+                    box-sizing: border-box;
+                    font-size: 14px;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+                td, th {
+                    border: 1px solid #000;
+                    padding: 6px;
+                    vertical-align: middle;
+                }
+
+                .no-border {
+                    border: none !important;
+                }
+
+                .header-title {
+                    font-size: 26px;
+                    font-weight: bold;
+                    color: #5b7bd5;
+                    text-align: right;
+                }
+
+                .section-title {
+                    background: #cfe2f3;
+                    font-weight: bold;
+                    text-align: center;
+                    font-size: 20px;
+                }
+
+                .table-header {
+                    background: #cfe2f3;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                .right {
+                    text-align: right;
+                }
+
+                .center {
+                    text-align: center;
+                }
+            </style>
+
+            <t t-foreach="docs" t-as="o">
+
+                <div class="page quotation-page">
+
+                    <!-- HEADER -->
+                    <table>
+                        <tr class="no-border">
+                            <td class="no-border" style="width:40%;">
+                                <img t-if="o.company_id.logo"
+                                     t-att-src="image_data_uri(o.company_id.logo)"
+                                     style="width:160px;"/>
+                            </td>
+                            <td class="no-border" style="width:60%;">
+                                <div class="header-title">
+                                    Duisport Packing Logistics India Pvt. Ltd
+                                </div>
+                                <div class="right">
+                                    Plot No.-576, Sector-8, IMT Manesar, Gurugram, Haryana<br/>
+                                    Gurugram-122050 (India). GSTIN: 06AAECD5705A1Z9<br/>
+                                    CIN: U20299PN2013FTC146359
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- QUOTATION TITLE -->
+                    <table>
+                        <tr>
+                            <td class="section-title">Quotation</td>
+                        </tr>
+                    </table>
+
+                    <!-- CUSTOMER + QUOTATION INFO -->
+                    <!-- <table>
+                        <tr>
+                            <td style="width:20%;"><b>Customer Name:-</b></td>
+                            <td style="width:40%;"><t t-esc="o.partner_id.name"/></td>
+                            <td style="width:20%;" class="center"><b>Date:</b></td>
+                            <td style="width:20%;" class="center">
+                                <t t-esc="o.date_order.strftime('%d-%m-%Y')"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Address:-</b></td>
+                            <td>
+                                <t t-esc="o.partner_id.contact_address"/>
+                            </td>
+                            <td class="center"><b>Quotation Ref No:</b></td>
+                            <td class="center">
+                                <t t-esc="o.name"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Contact Person:-</b></td>
+                            <td>
+                                <t t-esc="o.partner_id.name"/>
+                            </td>
+                            <td class="center"><b>Revision No:-</b></td>
+                            <td class="center">Rev 00</td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Contact Details:-</b></td>
+                            <td>
+                                <t t-esc="o.partner_id.phone or ''"/>
+                            </td>
+                            <td class="center"><b>Email:</b></td>
+                            <td class="center">
+                                <t t-esc="o.partner_id.email or ''"/>
+                            </td>
+                        </tr>
+                    </table> -->
+
+                    <!-- PRODUCT TABLE -->
+                    <!-- <table>
+                        <tr class="table-header">
+                            <td style="width:5%;">S.No</td>
+                            <td style="width:10%;">MOQ</td>
+                            <td style="width:45%;">Description</td>
+                            <td style="width:10%;">UOM</td>
+                            <td style="width:10%;">Qty</td>
+                            <td style="width:20%;">Price / Nos</td>
+                        </tr>
+
+                        <t t-set="i" t-value="1"/>
+                        <t t-foreach="o.order_line" t-as="line">
+                            <tr>
+                                <td class="center"><t t-esc="i"/></td>
+                                <td class="center">-</td>
+                                <td><t t-esc="line.name"/></td>
+                                <td class="center"><t t-esc="line.product_uom.name"/></td>
+                                <td class="center"><t t-esc="line.product_uom_qty"/></td>
+                                <td class="right">
+                                    <t t-esc="line.price_unit"/>
+                                </td>
+                            </tr>
+                            <t t-set="i" t-value="i + 1"/>
+                        </t>
+                    </table> -->
+
+                    
+                    <!-- TERMS & CONDITIONS -->
+                    <!-- <table>
+                        <tr>
+                            <td class="section-title">Terms &amp; Conditions:</td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:14px; line-height:1.6;">
+
+                                <b>Price:</b> The quoted price is exclusive of GST.<br/><br/>
+
+                                <b>Transportation:</b> Freight will be charged Extra at the Actual if the truck freight cost is not matched due to less qty.<br/><br/>
+
+                                <b>MOQ:</b> Rates are valid only if order received as per the MOQ.<br/><br/>
+
+                                <b>Inventory:</b> Stock will be maintained based on the schedule given – 15 to 20% extra – if there is any change in plan or specification or short closure of the order, you need to bear the full cost of material kept in Inventory – In the case of SFG / FG parts.<br/><br/>
+
+                                For the plain boards, it can be mutually discussed and resolved depending on the usability of the boards.<br/><br/>
+
+                                <b>GST:</b> Extra as applicable depending on the product.<br/><br/>
+
+                                <b>HSN Code:</b><br/>
+                                Corrugated box/board only – 48191010<br/>
+                                Corrugated box with pallet – 48191010<br/>
+                                Wood / Plywood box/pallet – 44151000<br/><br/>
+
+                                <b>Lead Time:</b> First set 10 to 15 days - 3 months tentative schedule to be shared by you, 2nd set onwards based on the Schedule shared by you.<br/><br/>
+
+                                <b>Additional Process / Treatment cost:</b> Extra as applicable – will be processed and chargeable as mutually agreed upon.<br/><br/>
+
+                                <b>Quotation Validity:</b> 7 days.<br/><br/>
+
+                                <b>Payment Terms:</b> Advance or 30 days credit period from date of Invoice.<br/><br/>
+
+                                <b>General Note:</b><br/>
+                                1. As per ISPM-15 standard, Duisport does not guarantee for mold and fungus formation due to increase in moisture levels in wood/Plywood (Naturally due to atmospheric conditions / due to water splash or getting wet in water through any kind of source).<br/>
+                                2. As per ISPM-15 standard, plywood and corrugated boards are exempted from fumigation / heat treatment.<br/>
+                                3. If market rates fluctuate, then we have to revise the rates accordingly on mutual concern.<br/>
+                                4. If there is any additional process or design change made, prices will be revised accordingly.<br/>
+                                5. The outsourced items supplied or referred by us are as per the standards shared by the suppliers’ terms and conditions. Any discrepancy arising from this will have to be referred and taken up with the concerned suppliers as per their terms and conditions.<br/>
+                                6. In-house inspection reports will be shared for every batch. If material test certificate is required from a 3rd party Lab, the cost for the same will be charged @ actual + material cost + freight + taxes.<br/><br/>
+
+                                <b>For Duisport Packing Logistics India Pvt. Ltd.</b><br/><br/>
+
+                                <b>Khushbu Baiswar</b><br/>
+                                Customer Support<br/>
+                                Mobile No.: +91 7408247865
+
+                            </td>
+                        </tr>
+                    </table> -->
+
+
+                </div>
+
+            </t>
+
+        </t>
+    </template>
+
+</odoo>

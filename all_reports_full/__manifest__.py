@@ -32,7 +32,9 @@
         'views/journal_register_report.xml',
         # 'views/report_layout.xml',
         'views/purchase_order_view.xml',
+        'views/quotation_report_action.xml',
         'reports/purchase_order_report.xml',
+        'reports/quotation_report.xml',
         
     ],
     'installable': True,

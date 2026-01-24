@@ -309,8 +309,26 @@
                                     <td class="cell" style="text-align:right;">
                                         <t t-esc="line.price_subtotal"/>
                                     </td>
-                                </tr>
+                                </tr>    
                             </t>
+
+
+                            <tr>
+                                <td class="cell"></td>
+                                <td class="cell" style="text-align:right;">
+                                    <strong>Total</strong>
+                                </td>
+                                <td class="cell"></td>
+                                <td class="cell"></td>
+                                <td class="cell"></td>
+                                <td class="cell"></td>
+                                <td class="cell" style="text-align:right;">
+                                    <strong>
+                                        <t t-esc="'%.2f' % o.amount_untaxed"/>
+                                    </strong>
+                                </td>
+                            </tr>
+
 
                             <tr>
                                 <td class="cell" style="height:180px;"></td>
@@ -447,7 +465,14 @@
                                     border-bottom:none;
                                 "></td>
                             </tr>
+
+
+                            <tr>
+                                <td style="border-left:0.6px solid #777; height:40px;"></td>
+                                <td style="border-right:0.6px solid #777; height:40px;"></td>
+                            </tr>
                             
+
                             <!-- ROW 3 : SIGNATURE (PROVIDES FINAL BOTTOM BORDER) -->
                             <tr>
                                 <td style="
@@ -456,8 +481,8 @@
                                     border-right:none;
                                     border-bottom:none;
                                 "></td>
-                                <td class="cell" style="text-align:center; vertical-align:bottom; height:90px;">
-                                    <strong>for Duisport Packing Logistics India Pvt. Ltd.</strong><br/><br/>
+                                <td class="cell" style="text-align:right; vertical-align:bottom; height:10px;">
+                                    <strong>for Duisport Packing Logistics India Pvt. Ltd.</strong><br/><br/><br/>
                                     Authorised Signatory
                                 </td>
                             </tr>
