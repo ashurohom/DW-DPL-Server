@@ -43,10 +43,17 @@ class SaleOrder(models.Model):
         Advance or 30 days credit period from date of Invoice.</p>
 
         <p><strong>General Note:</strong><br/>
-        1. As per ISPM-15 standard, Duisport does not guarantee for mold and fungus formation.<br/>
+        1. As per ISPM-15 standard, Duisport does not guarantee for mold and fungus formation due to Increase 
+        in moisture levels in wood/Plywood (Naturally due to atmospheric conditions / due to water splash or 
+        getting wet in water through any kind of source).<br/>
         2. Plywood and corrugated boards are exempted from fumigation / heat treatment.<br/>
-        3. Rates may be revised if market fluctuates.<br/>
-        4. Any design or process change will revise prices accordingly.
+        3. If market rates fluctuate, then we have to revise the rates accordingly on mutual concern.<br/>
+        4. If there is any additional process or design change made prices will be revised accordingly.>br/>
+        5.The outsourced items supplied or referred by us are as per the Standards shared by the Suppliers terms 
+        and conditions.  Any discrepancy arising from this will have to be referred and taken up with the 
+        concerned suppliers as per their terms and conditions.<br/>
+        6.In-house Inspection reports will be shared for every batch, if the material test certificate required 
+        from the 3rd party Lab, the cost for the same will be charged @ actual + the material cost + freight + taxes.
         </p>
 
         <p><strong>For Duisport Packing Logistics India Pvt. Ltd.</strong><br/>

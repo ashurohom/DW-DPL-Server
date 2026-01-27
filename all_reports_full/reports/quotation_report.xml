@@ -3,7 +3,7 @@
 
     <template id="quotation_report_document">
         <t t-call="web.basic_layout">
-
+  <meta charset="utf-8"/>
             <style>
                 /* REMOVE DEFAULT ODOO PAGE BORDER */
                 .page {
@@ -210,9 +210,9 @@
                                 <td><t t-esc="line.name"/></td>
                                 <td class="center"><t t-esc="line.product_uom.name"/></td>
                                 <td class="center"><t t-esc="line.product_uom_qty"/></td>
-                                <td class="right">
-                                    <t t-esc="line.price_unit"/>
-                                </td>
+                                <td class="cell center">
+                                        <span t-field="line.price_unit" t-options="{'widget':'monetary','display_currency':o.currency_id}"/>
+                                    </td>
                             </tr>
                             <t t-set="i" t-value="i + 1"/>
                         </t>

@@ -33,6 +33,7 @@
         # 'views/report_layout.xml',
         'views/purchase_order_view.xml',
         'views/quotation_report_action.xml',
+        # 'views/report_debit_note.xml',
         'reports/purchase_order_report.xml',
         'reports/quotation_report.xml',
         
